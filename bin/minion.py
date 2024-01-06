@@ -40,9 +40,12 @@ LOG = "/tmp/minion.log"
 sys.stdout = Logger(LOG)
 sys.stderr = Logger(LOG)
 
-start_action = "/usr/bin/omxplayer /home/pi/FRED/Raspberry/0_SON/MINION/2_hello9.mp3"
-#start_action = ""
-stop_action = "/usr/bin/omxplayer /home/pi/FRED/Raspberry/0_SON/MINION/1_ta-da-29.mp3"
+
+PLAYER = "/usr/bin/mpg321"
+SOUNDS_REP = os.path.dirname(__file__) +"/../sounds/"
+
+start_action = PLAYER +" "+ SOUNDS_REP+ "2_hello9.mp3"
+stop_action  = PLAYER +" "+ SOUNDS_REP+ "1_ta-da-29.mp3"
 
 
 

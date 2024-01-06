@@ -27,7 +27,7 @@ On part de zéro, Formattage de la carte SD --> https://www.sdcard.org/downloads
 
 #### Installation de l'OS
 
-Préparation de la carte SD, sous wimndows, à l'aide de **Raspberry Pi Imager** --> https://www.raspberrypi.com/software/
+Préparation de la carte SD, sous windows, à l'aide de **Raspberry Pi Imager** --> https://www.raspberrypi.com/software/
 
 dans Raspberry Pi Imager, on sélectionne :
 - le type de carte : PI 4
@@ -41,7 +41,7 @@ dans Raspberry Pi Imager, on sélectionne :
 
 
 
-** la **version Lite** permet de bénéficier d'une verion sans l'environnement graphique de seulement 400Mo, tout est fait en CLI via SSH.
+** la **version Lite** permet de bénéficier d'une version sans l'environnement graphique de seulement 400Mo, tout est fait en CLI via SSH.
 
 #### Connection et configuration
 
@@ -68,7 +68,7 @@ Activation du service de gestion des GPIOs
 
 
 
-#### Dépot GIT
+#### Dépôt GIT
 
 Récupération du dépot Git , depuis le répertoire /home/pi :
 

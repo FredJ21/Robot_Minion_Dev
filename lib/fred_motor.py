@@ -15,7 +15,8 @@ import pigpio
 
 from fred_lib       import col
 
-REP_SON = "/home/pi/MINION/sound"
+PLAYER     = "/usr/bin/mpg321"
+SOUNDS_REP = os.path.dirname(__file__) +"/../sounds/"
 
 
 pi = pigpio.pi()
@@ -512,6 +513,6 @@ class receiver_UDP(object):
 def play_sound(son):
 
 
-    CMD = "/usr/bin/omxplayer "+ REP_SON +"/"+ son +"&"
+    CMD = PLAYER +" "+ SOUNDS_REP + son +"&"
 
     os.system(CMD)

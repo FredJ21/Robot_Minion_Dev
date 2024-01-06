@@ -9,6 +9,10 @@ import pigpio
 
 TIMEOUT_BUTTON = 5
 
+PLAYER     = "/usr/bin/mpg321"
+SOUNDS_REP = os.path.dirname(__file__) +"/../sounds/"
+BYBY       = PLAYER +" "+ SOUNDS_REP+ "bye-bye.mp3"
+
 # -----------------------------------------------------------------------------
 #                           COLOR
 
@@ -134,7 +138,7 @@ class Led_and_button_control(object):
                 print(self.head+"Button Gpio "+ str(self.button_gpio) +" is pressed, shutdown in "+ str(self.button_timeout) +"s")
 
                 if self.button_timeout <= 0 :
-                    os.system('/usr/bin/omxplayer /home/pi/FRED/Raspberry/0_SON/bye-bye.mp3')
+                    os.system(BYBY)
                     os.system('sudo shutdown -h now')
 
             else :

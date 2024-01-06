@@ -68,9 +68,9 @@ Activation du service de gestion des GPIOs
 
 
 
-### Dépot GIT
+#### Dépot GIT
 
-Récupération du dépot Git , depuis le répertoire /home/pi : 
+Récupération du dépot Git , depuis le répertoire /home/pi :
 
     git clone https://github.com/FredJ21/Robot_Minion_Dev.git  MINION
 
@@ -88,18 +88,41 @@ Création de l'environnement virtuel Python et installation des packages
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
-    $ chmod +x bin/minion.py
-    $ chmod +x bin/play_sequence.py
+    chmod +x bin/minion.py
+    chmod +x bin/play_sequence.py
+
+
+#### Premiers Tests
+
+On peut maintenant lancer 2 terminaux  :
+
+***pour lancer le programme principale***
+
+
+    ssh pi@pi19-minion-2
+
+    pi@pi19-minion-2:~ $ MINION/bin/minion.py
+
+- fichier de configuration des moteurs : **bin/data.json**
+- le programme ouvre un socket **UDP** sur le **port 2100** pour recevoir les commandes
+
+
+***pour lancer des séquences de commandes de test***
+
+
+    ssh pi@pi19-minion-2
+
+    pi@pi19-minion-2:~ $ MINION/bin/play_sequence.py seq1
+
+- ce programme lit les séquences (seq1, seq2, ... ) dans le rep bin
+- ce programme transmet les commandes ver le port UDP:2100
 
 
 
 
-TODO :
-source venv/bin/activate
-echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
 
-pip freeze > requirements.txt
-pip install -r requirements.txt
+
+
 
 
 

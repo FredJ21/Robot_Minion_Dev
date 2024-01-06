@@ -1,7 +1,7 @@
 {
   "comment": [
     {
-	"line1": " Configuration des servos de 0 à 1000 "
+	"line1": " Configuration des servos de 0 à 1000"
     }
   ],	  
   "motor": [

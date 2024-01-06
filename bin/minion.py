@@ -32,7 +32,7 @@ MY_LOCAL_IP = "0.0.0.0"
 MY_LOCAL_PORT = 21000
 
 my_led_gpio     = 21
-my_button_gpio  = 20
+my_button_gpio  = 19
 
 CONFIG = os.path.dirname(__file__) +"/data.json"
 
@@ -79,7 +79,7 @@ def main():
     signal.signal(signal.SIGTERM, sigterm_handler)
 
 
-    # Gestion de la LED                                                         TODO : Corriger lib
+    # Gestion de la LED                                                         
     my_thread_Led = Led_and_button_control( my_led_gpio, my_button_gpio )
     my_thread_Led.start()
     sleep(0.1)

@@ -41,9 +41,11 @@ dans Raspberry Pi Imager, on sélectionne :
 
 
 
-** la version Lite permet de bénéficier d'une verion sans l'environnement graphique ( tout est fait en CLI via SSH) de seulement 400Mo  
+** la **version Lite** permet de bénéficier d'une verion sans l'environnement graphique de seulement 400Mo, tout est fait en CLI via SSH.
 
 #### Connection et configuration
+
+/!\ il faut trouver l'adresse IP de la Raspberry PI /!\
 
     $ ssh pi@pi19-minion-2
     pi@pi19-minion-2's password:
@@ -55,7 +57,7 @@ mise à jour système
 
 installation des packages système indispensables
 
-    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip
+    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip virtualenv
 
 
 Activation du service de gestion des GPIOs
@@ -64,14 +66,37 @@ Activation du service de gestion des GPIOs
     pi@pi19-minion-2:~ $ sudo systemctl start pigpiod
     pi@pi19-minion-2:~ $ sudo systemctl status pigpiod
 
-sdcard
+
+
+### Dépot GIT
+
+Récupération du dépot Git
+
+    git clone https://github.com/FredJ21/Robot_Minion_Dev.git  MINION
+
+    Cloning into 'MINION'...
+    remote: Enumerating objects: 38, done.
+    remote: Counting objects: 100% (38/38), done.
+    remote: Compressing objects: 100% (31/31), done.
+    remote: Total 38 (delta 7), reused 32 (delta 5), pack-reused 0
+    Receiving objects: 100% (38/38), 1.30 MiB | 5.25 MiB/s, done.
+    Resolving deltas: 100% (7/7), done.
+
+Création de l'environnement virtuel Python et installation des packages
+
+    cd MINION
+    virtualenv venv
+    source venv/bin/activate
+    pip3 install -r requirements.txt
+    $ chmod +x bin/minion.py
+    $ chmod +x bin/play_sequence.py
 
 
 
 
-
-
-
+TODO :
+source venv/bin/activate
+echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
 
 
 

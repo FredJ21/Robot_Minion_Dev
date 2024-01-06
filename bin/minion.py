@@ -14,8 +14,7 @@ from time import time
 
 from adafruit_servokit import ServoKit              #pip3 install adafruit-circuitpython-servokit
 
-sys.path.append('/home/pi/FRED/Raspberry/LIB')
-sys.path.append('/home/fredj21/FRED/DEV/Raspberry/LIB')
+sys.path.append(os.path.dirname(__file__) +'/../lib')
 
 from fred_lib       import col
 from fred_lib       import Logger

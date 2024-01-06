@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 import sys
 import os
@@ -14,12 +13,9 @@ from numpy import interp
 
 import pigpio
 
-sys.path.append('/home/pi/FRED/Raspberry/LIB')
-sys.path.append('/DATA/FRED/DEV/Raspberry/LIB')
-
 from fred_lib       import col
 
-REP_SON = "/home/pi/FRED/Raspberry/0_SON/MINION"
+REP_SON = "/home/pi/MINION/sound"
 
 
 pi = pigpio.pi()

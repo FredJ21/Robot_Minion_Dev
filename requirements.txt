@@ -9,6 +9,8 @@ adafruit-circuitpython-typing==1.9.6
 Adafruit-PlatformDetect==3.57.0
 Adafruit-PureIO==1.1.11
 numpy==1.26.3
+pigpio==1.78
+psutil==5.9.7
 pyftdi==0.55.0
 pyserial==3.5
 pythonping==1.1.4

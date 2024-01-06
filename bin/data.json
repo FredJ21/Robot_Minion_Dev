@@ -1,0 +1,76 @@
+{
+  "comment": [
+    {
+	"line1": " Configuration des servos de 0 à 1000"
+    }
+  ],	  
+  "motor": [
+    {
+	"name": "Oeil_X",
+        "motor_type" : "servo",
+        "reverse"    : false,
+        "pwm_min"    : 300,
+        "pwm_max"    : 700,
+        "pwm_home"   : 500,
+        "gpio"       : 5
+    },{
+	"name": "Oeil_Y",
+        "motor_type" : "servo",
+        "reverse"    : false,
+        "pwm_min"    : 350,
+        "pwm_max"    : 650,
+        "pwm_home"   : 500,
+        "gpio"       : 6
+    },{
+	"name": "Bras_D",
+        "motor_type" : "servo",
+        "reverse"    : false,
+        "pwm_min"    : 0,
+        "pwm_max"    : 1000,
+        "pwm_home"   : 200,
+        "gpio"       : 12
+    },{
+	"name": "Bras_G",
+        "motor_type" : "servo",
+        "reverse"    : true,
+        "pwm_min"    : 0,
+        "pwm_max"    : 1000,
+        "pwm_home"   : 200,
+        "gpio"       : 13
+    },{
+	"name": "Bouche_D",
+        "motor_type" : "servo",
+        "reverse"    : false,
+        "pwm_min"    : 200,
+        "pwm_max"    : 700,
+        "pwm_home"   : 500,
+        "pwm_offset" : -30,
+        "gpio"       : 7
+    },{
+	"name": "Bouche_G",
+        "motor_type" : "servo",
+        "reverse"    : true,
+        "pwm_min"    : 200,
+        "pwm_max"    : 700,
+        "pwm_home"   : 500,
+        "pwm_offset" : -50,
+        "gpio"       : 8
+    },{
+	"name": "Moteur_D",
+        "motor_type" : "CC",
+        "reverse"    : true,
+        "pwm_min"    : 0,
+        "pwm_max"    : 255,
+        "pwm_home"   : 0,
+        "gpioList"   : [24, 25]
+    },{
+	"name": "Moteur_G",
+        "motor_type" : "CC",
+        "reverse"    : false,
+        "pwm_min"    : 0,
+        "pwm_max"    : 255,
+        "pwm_home"   : 0,
+        "gpioList"   : [26, 27]
+    }
+  ]
+}

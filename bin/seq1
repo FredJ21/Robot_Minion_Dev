@@ -1,0 +1,44 @@
+{ "play":"8_banana_long.mp3" }
+{ "Bras_D":"0", "Bras_G":"0", "Bouche_D":"1000", "Bouche_G":"1000" }
+sleep 1
+{ "Bras_D":"home", "Bras_G":"home" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300" }
+sleep 1  
+{ "Bras_D":"0", "Bras_G":"0", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"1000" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700", "Bouche_D":"1000", "Bouche_G":"1000", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_Y":"1000" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_Y":"0" }
+sleep 1  
+{ "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"1000" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700", "Bouche_D":"1000", "Bouche_G":"1000", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_Y":"1000" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_Y":"0" }
+sleep 1  
+{ "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"1000" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700", "Bouche_D":"1000", "Bouche_G":"1000", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"1000" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700", "Bouche_D":"1000", "Bouche_G":"1000", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"700", "Bras_G":"300", "Bouche_D":"0", "Bouche_G":"0", "Oeil_X":"1000" }
+sleep 1  
+{ "Bras_D":"300", "Bras_G":"700", "Bouche_D":"1000", "Bouche_G":"1000", "Oeil_X":"0" }
+sleep 1  
+{ "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }

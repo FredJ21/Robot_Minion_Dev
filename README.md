@@ -45,5 +45,41 @@ dans Raspberry Pi Imager, on sélectionne :
 
 #### Connection et configuration
 
-  $ ssh pi@pi19-minion-2
-  pi@pi19-minion-2's password:
+    $ ssh pi@pi19-minion-2
+    pi@pi19-minion-2's password:
+
+mise à jour système
+
+    pi@pi19-minion-2:~ $ sudo apt update    
+    pi@pi19-minion-2:~ $ sudo apt upgrade -y
+
+installation des packages système indispensables
+
+    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip
+
+
+Activation du service de gestion des GPIOs
+
+    pi@pi19-minion-2:~ $ sudo systemctl enable pigpiod
+    pi@pi19-minion-2:~ $ sudo systemctl start pigpiod
+    pi@pi19-minion-2:~ $ sudo systemctl status pigpiod
+
+sdcard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ---

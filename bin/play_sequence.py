@@ -25,7 +25,7 @@ DEBUG = True
 #DATA = { "X":33, "Y":77, "Z":127 }
 #DATA_FILE = "DATA_to_send.txt"
 
-REP = "/home/pi/FRED/Raspberry/MINION"
+REP = os.path.dirname(__file__)
 DATA_FILE =  REP +"/" + sys.argv[1] 
 
 

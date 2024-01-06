@@ -57,7 +57,7 @@ mise à jour système
 
 installation des packages système indispensables
 
-    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip virtualenv
+    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip virtualenv mpg321
 
 
 Activation du service de gestion des GPIOs
@@ -70,7 +70,7 @@ Activation du service de gestion des GPIOs
 
 ### Dépot GIT
 
-Récupération du dépot Git
+Récupération du dépot Git , depuis le répertoire /home/pi : 
 
     git clone https://github.com/FredJ21/Robot_Minion_Dev.git  MINION
 
@@ -87,7 +87,7 @@ Création de l'environnement virtuel Python et installation des packages
     cd MINION
     virtualenv venv
     source venv/bin/activate
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
     $ chmod +x bin/minion.py
     $ chmod +x bin/play_sequence.py
 
@@ -97,6 +97,11 @@ Création de l'environnement virtuel Python et installation des packages
 TODO :
 source venv/bin/activate
 echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
 
 
 

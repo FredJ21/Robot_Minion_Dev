@@ -34,9 +34,9 @@ MY_LOCAL_PORT = 21000
 my_led_gpio     = 21
 my_button_gpio  = 20
 
-CONFIG = "data.json"
+CONFIG = os.path.dirname(__file__) +"/data.json"
 
-LOG = "/var/log/minion.log"
+LOG = "/tmp/minion.log"
 sys.stdout = Logger(LOG)
 sys.stderr = Logger(LOG)
 

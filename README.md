@@ -43,6 +43,14 @@ dans Raspberry Pi Imager, on sélectionne :
 
 ** la **version Lite** permet de bénéficier d'une version sans l'environnement graphique de seulement 400Mo, tout est fait en CLI via SSH.
 
+Pour info : version PI OS Lite (64-bits) utilisée : 2023-12-11
+
+![Pi version](img/Pi_OS_Lite.JPG)
+
+
+
+---
+
 #### Connection et configuration
 
 /!\ il faut trouver l'adresse IP de la Raspberry PI /!\

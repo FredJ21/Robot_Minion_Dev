@@ -128,8 +128,19 @@ On peut maintenant lancer 2 terminaux  :
 - ce programme transmet les commandes ver le port UDP:2100
 
 
+---
+
+#### Serveur WEB de commande
 
 
+# TODO
+
+
+---
+
+#### Démarrage Auto des services
+
+# TODO
 
 
 

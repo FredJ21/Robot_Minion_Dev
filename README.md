@@ -55,24 +55,24 @@ Pour info : version PI OS Lite (64-bits) utilisée : 2023-12-11
 
 ⚠️ il faut trouver l'adresse IP de la Raspberry PI ⚠️
 
-    $ ssh pi@pi19-minion-2
-    pi@pi19-minion-2's password:
+    $ ssh
+    pi@rpi-minion's password:
 
 mise à jour système
 
-    pi@pi19-minion-2:~ $ sudo apt update    
-    pi@pi19-minion-2:~ $ sudo apt upgrade -y
+    pi@rpi-minion:~ $ sudo apt update    
+    pi@rpi-minion:~ $ sudo apt upgrade -y
 
 installation des packages système indispensables
 
-    pi@pi19-minion-2:~ $ sudo apt install vim git python3-pip virtualenv mpg321
+    pi@rpi-minion:~ $ sudo apt install vim git python3-pip virtualenv mpg321
 
 
 Activation du service de gestion des GPIOs
 
-    pi@pi19-minion-2:~ $ sudo systemctl enable pigpiod
-    pi@pi19-minion-2:~ $ sudo systemctl start pigpiod
-    pi@pi19-minion-2:~ $ sudo systemctl status pigpiod
+    pi@rpi-minion:~ $ sudo systemctl enable pigpiod
+    pi@rpi-minion:~ $ sudo systemctl start pigpiod
+    pi@rpi-minion:~ $ sudo systemctl status pigpiod
 
 
 
@@ -109,9 +109,9 @@ On peut maintenant lancer 2 terminaux  :
 ***pour lancer le programme principale***
 
 
-    ssh pi@pi19-minion-2
+    ssh pi@rpi-minion
 
-    pi@pi19-minion-2:~ $ MINION/bin/minion.py
+    pi@rpi-minion:~ $ MINION/bin/minion.py
 
 - fichier de configuration des moteurs : **bin/data.json**
 - le programme ouvre un socket **UDP** sur le **port 2100** pour recevoir les commandes
@@ -120,9 +120,9 @@ On peut maintenant lancer 2 terminaux  :
 ***pour lancer des séquences de commandes de test***
 
 
-    ssh pi@pi19-minion-2
+    ssh pi@rpi-minion
 
-    pi@pi19-minion-2:~ $ MINION/bin/play_sequence.py seq1
+    pi@rpi-minion:~ $ MINION/bin/play_sequence.py seq1
 
 - ce programme lit les séquences (seq1, seq2, ... ) dans le rep bin
 - ce programme transmet les commandes ver le port UDP:2100
@@ -131,6 +131,23 @@ On peut maintenant lancer 2 terminaux  :
 ---
 
 #### Serveur WEB de commande
+
+Installation du serveur "NodeJs" et du gestionnaire de paquets "npm"
+
+    sudo apt install -y nodejs npm
+    cd ~/MINION/web/
+    npm install
+
+pour démarrer le serveur :
+
+    node server.js
+
+puis pour tester :     
+
+    http://rpi-minion:3000
+    ou
+    http://192.168.1.xx:3000
+
 
 
 # TODO

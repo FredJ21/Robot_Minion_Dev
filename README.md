@@ -53,7 +53,7 @@ Pour info : version PI OS Lite (64-bits) utilisée : 2023-12-11
 
 #### Connection et configuration
 
-/!\ il faut trouver l'adresse IP de la Raspberry PI /!\
+⚠️ il faut trouver l'adresse IP de la Raspberry PI ⚠️
 
     $ ssh pi@pi19-minion-2
     pi@pi19-minion-2's password:

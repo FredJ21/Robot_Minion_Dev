@@ -1,0 +1,177 @@
+
+body {
+  background-color: lightblue;
+  background: url(/img/background.jpg) no-repeat center fixed;
+  background-size: cover;
+  color:#ffffff;
+  margin-left: 50px;
+  margin-right: 50px;
+  	user-select: none;
+}
+
+h1 {
+	font-family: MingLiU-ExtB;
+	font-size: 25px;
+	letter-spacing: 10px;
+	word-spacing: 0px;
+	color: #c4cbab;
+	font-weight: bold;
+	text-decoration: none;
+	font-style: italic;
+	font-variant: normal;
+	text-transform: none;
+}
+
+p {	
+	margin: 5px;
+}
+
+.haut {
+	display: flex;
+  	user-select: none;
+}
+.haut_1 {
+	display: inline;
+  	margin-left: 50px;
+  	user-select: none;
+
+}
+.haut_2 {
+	display: inline;
+  	margin-left: 150px;
+  	margin-top: 10px;
+	width: 50%;
+}
+.haut_3 {
+	display: inline;
+  	margin-left: 0px;
+  	margin-top: 10px;
+}
+
+
+.mySeqButton {
+	box-shadow:inset 0px 1px 0px 0px #9acc85;
+	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+	background-color:#74ad5a;
+	border-radius:42px;
+	border:1px solid #3b6e22;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 76px;
+	text-decoration:none;
+}
+.mySeqButton:hover {
+	background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+	background-color:#68a54b;
+}
+.mySeqButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+.myAudioButton {
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:6px;
+	border:0px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	margin: 2px;
+}
+.myAudioButton:hover {
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	background-color:#77a809;
+    border: 3px solid #f00;
+}
+.myAudioButton:active {
+	position:relative;
+	top:1px;
+}
+
+.mySystemButton {
+	box-shadow:inset 0px 1px 20px 16px #bee2f9;
+	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	background-color:#63b8ee;
+	border-radius:32px;
+	border:4px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#14396a;
+	font-family:Arial;
+	font-size:16px;
+	padding:8px 50px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+	margin-bottom: 15px;
+}
+.mySystemButton:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background-color:#468ccf;
+    	border: 3px solid #f00;
+}
+.mySystemButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+div.smiley {
+
+  display: inline-block;
+  border: 0px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 50px;
+  margin-left: 50px;
+  text-align: center;
+  user-select: none;
+	
+}
+
+div.gallery {
+  margin: 5px;
+  border: 0px solid #ccc;
+  float: left;
+  width: 120px;
+  user-select: none;
+}
+
+div.gallery:hover {
+  border: 3px solid #f00;
+  user-select: none;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+div.desc {
+  padding: 5px;
+  text-align: center;
+}
+
+#video {
+  margin: 5px;
+  border: 3px solid #ccc;
+  width:  512px;
+  height: 384px;
+  user-select: none;
+}
+
+

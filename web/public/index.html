@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MINION</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+
+</head>
+<body>
+  <h1>Minion Control Web App</h1>
+  <hr>
+  <div class="haut">
+	  <div class="haut_1">
+		<img id="video" src="/video_feed" atl="video Cam"/>
+	  </div>
+	  <div class="haut_2">
+		  <p><a onclick="sequence('seq1')" href="#" class="mySeqButton">Sequence 1</a></p>
+		  <p><a onclick="sequence('seq2')" href="#" class="mySeqButton">Sequence 2</a></p>
+		  <p><a onclick="sequence('seq3')" href="#" class="mySeqButton">Sequence 3</a></p>
+		  <p><a onclick="sequence('seq4')" href="#" class="mySeqButton">Sequence 4</a></p>
+		  <p><a onclick="sequence('seq5')" href="#" class="mySeqButton">Sequence 5</a></p>
+	  </div>
+	  <div class="haut_3">
+		  <p><a onclick="mySystem('kill_omxplayer')" href="#" class="mySystemButton">Self Destructor </a></p>
+		  <p><a onclick="mySystem('ena_opencv')" href="#" class="mySystemButton">Brain on Fire</a></p>
+		  <p><a onclick="mySystem('disa_opencv')" href="#" class="mySystemButton">Brain on standby</a></p>
+		  <p><a onclick="mySystem('laser')" href="#" class="mySystemButton">Laser Killer</a></p>
+	  </div>
+
+  </div>
+  <hr>
+  <div class="smiley">
+	  <div onclick="bouche('sourire')" class="gallery"> <img src="img/sourire.png"></div>
+	  <div onclick="bouche('neutre')" class="gallery"> <img src="img/neutre.png"></div>
+	  <div onclick="bouche('triste')" class="gallery"> <img src="img/triste.png"></div>
+	  <div onclick="bouche('fou1')" class="gallery"> <img src="img/fou1.png"></div>
+	  <div onclick="bouche('fou2')" class="gallery"> <img src="img/fou2.png"></div>
+	  <div onclick="bras('hb1')" class="gallery"> <img src="img/Bras_hb1.png"></div>
+	  <div onclick="bras('bas')" class="gallery"> <img src="img/Bras_bas.png"></div>
+	  <div onclick="bras('haut')" class="gallery"> <img src="img/Bras_haut.png"></div>
+	  <div onclick="bras('hb2')" class="gallery"> <img src="img/Bras_hb2.png"></div>
+	  <div onclick="bras('horizon')" class="gallery"> <img src="img/Bras_horizon.png"></div>
+	  <div onclick="bras('horizon1')" class="gallery"> <img src="img/Bras_horizon1.png"></div>
+	  <div onclick="bras('horizon2')" class="gallery"> <img src="img/Bras_horizon2.png"></div>
+
+  </div>
+
+  <hr>
+
+  <div class="son">
+
+<a onclick="playSound('1_arghh.mp3')" href="#" class="myAudioButton">1_arghh.mp3</a>
+<a onclick="playSound('1_baaa.mp3')" href="#" class="myAudioButton">1_baaa.mp3</a>
+<a onclick="playSound('1_cri2.mp3')" href="#" class="myAudioButton">1_cri2.mp3</a>
+<a onclick="playSound('1_cri.mp3')" href="#" class="myAudioButton">1_cri.mp3</a>
+<a onclick="playSound('1_evil-minion-baaah.mp3')" href="#" class="myAudioButton">1_evil-minion-baaah.mp3</a>
+<a onclick="playSound('1_hahaha.mp3')" href="#" class="myAudioButton">1_hahaha.mp3</a>
+<a onclick="playSound('1_haha.mp3')" href="#" class="myAudioButton">1_haha.mp3</a>
+<a onclick="playSound('1_ha.mp3')" href="#" class="myAudioButton">1_ha.mp3</a>
+<a onclick="playSound('1_hehehehe.mp3')" href="#" class="myAudioButton">1_hehehehe.mp3</a>
+<a onclick="playSound('1_hehehe.mp3')" href="#" class="myAudioButton">1_hehehe.mp3</a>
+<a onclick="playSound('1_hehe.mp3')" href="#" class="myAudioButton">1_hehe.mp3</a>
+<a onclick="playSound('1_hello.mp3')" href="#" class="myAudioButton">1_hello.mp3</a>
+<a onclick="playSound('1_he.mp3')" href="#" class="myAudioButton">1_he.mp3</a>
+<a onclick="playSound('1_Hmhm.mp3')" href="#" class="myAudioButton">1_Hmhm.mp3</a>
+<a onclick="playSound('1_hoho.mp3')" href="#" class="myAudioButton">1_hoho.mp3</a>
+<a onclick="playSound('1_laughter.mp3')" href="#" class="myAudioButton">1_laughter.mp3</a>
+<a onclick="playSound('1_lol9.mp3')" href="#" class="myAudioButton">1_lol9.mp3</a>
+<a onclick="playSound('1_nono.mp3')" href="#" class="myAudioButton">1_nono.mp3</a>
+<a onclick="playSound('1_patput.mp3')" href="#" class="myAudioButton">1_patput.mp3</a>
+<a onclick="playSound('1_pluuu9.mp3')" href="#" class="myAudioButton">1_pluuu9.mp3</a>
+<a onclick="playSound('1_popadom.mp3')" href="#" class="myAudioButton">1_popadom.mp3</a>
+<a onclick="playSound('1_raa-poo9.mp3')" href="#" class="myAudioButton">1_raa-poo9.mp3</a>
+<a onclick="playSound('1_son_cours.mp3')" href="#" class="myAudioButton">1_son_cours.mp3</a>
+<a onclick="playSound('1_ta-da-29.mp3')" href="#" class="myAudioButton">1_ta-da-29.mp3</a>
+<a onclick="playSound('1_yay.mp3')" href="#" class="myAudioButton">1_yay.mp3</a>
+<a onclick="playSound('2_banana-2.mp3')" href="#" class="myAudioButton">2_banana-2.mp3</a>
+<a onclick="playSound('2_banana.mp3')" href="#" class="myAudioButton">2_banana.mp3</a>
+<a onclick="playSound('2_bottom.mp3')" href="#" class="myAudioButton">2_bottom.mp3</a>
+<a onclick="playSound('2_caco.mp3')" href="#" class="myAudioButton">2_caco.mp3</a>
+<a onclick="playSound('2_doukatou.mp3')" href="#" class="myAudioButton">2_doukatou.mp3</a>
+<a onclick="playSound('2_heee.mp3')" href="#" class="myAudioButton">2_heee.mp3</a>
+<a onclick="playSound('2_hello-2.mp3')" href="#" class="myAudioButton">2_hello-2.mp3</a>
+<a onclick="playSound('2_hello9.mp3')" href="#" class="myAudioButton">2_hello9.mp3</a>
+<a onclick="playSound('2_hello.mp3')" href="#" class="myAudioButton">2_hello.mp3</a>
+<a onclick="playSound('2_ho_hello.mp3')" href="#" class="myAudioButton">2_ho_hello.mp3</a>
+<a onclick="playSound('2_kevin.mp3')" href="#" class="myAudioButton">2_kevin.mp3</a>
+<a onclick="playSound('2_may-wad-dumpa9.mp3')" href="#" class="myAudioButton">2_may-wad-dumpa9.mp3</a>
+<a onclick="playSound('2_molask.mp3')" href="#" class="myAudioButton">2_molask.mp3</a>
+<a onclick="playSound('2_niado.mp3')" href="#" class="myAudioButton">2_niado.mp3</a>
+<a onclick="playSound('2_Pape.mp3')" href="#" class="myAudioButton">2_Pape.mp3</a>
+<a onclick="playSound('2_popadom.mp3')" href="#" class="myAudioButton">2_popadom.mp3</a>
+<a onclick="playSound('2_Rires.mp3')" href="#" class="myAudioButton">2_Rires.mp3</a>
+<a onclick="playSound('2_Uno.mp3')" href="#" class="myAudioButton">2_Uno.mp3</a>
+<a onclick="playSound('2_What.mp3')" href="#" class="myAudioButton">2_What.mp3</a>
+<a onclick="playSound('3_blabla2.mp3')" href="#" class="myAudioButton">3_blabla2.mp3</a>
+<a onclick="playSound('3_blabla3.mp3')" href="#" class="myAudioButton">3_blabla3.mp3</a>
+<a onclick="playSound('3_blabla.mp3')" href="#" class="myAudioButton">3_blabla.mp3</a>
+<a onclick="playSound('3_He_patput__hoho.mp3')" href="#" class="myAudioButton">3_He_patput__hoho.mp3</a>
+<a onclick="playSound('3_hey-ho-9.mp3')" href="#" class="myAudioButton">3_hey-ho-9.mp3</a>
+<a onclick="playSound('3_Look_at_You.mp3')" href="#" class="myAudioButton">3_Look_at_You.mp3</a>
+<a onclick="playSound('3_moo-lol9.mp3')" href="#" class="myAudioButton">3_moo-lol9.mp3</a>
+<a onclick="playSound('3_Whistling.mp3')" href="#" class="myAudioButton">3_Whistling.mp3</a>
+<a onclick="playSound('3_Yup_La_Lo_Doo.mp3')" href="#" class="myAudioButton">3_Yup_La_Lo_Doo.mp3</a>
+<a onclick="playSound('4_smeh-minonov.mp3')" href="#" class="myAudioButton">4_smeh-minonov.mp3</a>
+<a onclick="playSound('8_banana_long.mp3')" href="#" class="myAudioButton">8_banana_long.mp3</a>
+<a onclick="playSound('8_banana.mp3')" href="#" class="myAudioButton">8_banana.mp3</a>
+<a onclick="playSound('8_banana_tres_long.mp3')" href="#" class="myAudioButton">8_banana_tres_long.mp3</a>
+<a onclick="playSound('8_chanson_courte_banana.mp3')" href="#" class="myAudioButton">8_chanson_courte_banana.mp3</a>
+<a onclick="playSound('8_Go_to_Sleep.mp3')" href="#" class="myAudioButton">8_Go_to_Sleep.mp3</a>
+
+<a onclick="playSound('10_min-ony-novogodnyaya-pesnya.mp3')" href="#" class="myAudioButton">10_min-ony-novogodnyaya-pesnya.mp3</a>
+
+  <hr>
+<a onclick="playSound('../390531__freedomfightervictor__calculating.wav')" href="#" class="myAudioButton">R2D2 Papuche</a>
+<a onclick="playSound('../547016__neopolitansixth__classic-computing-sound.wav')" href="#" class="myAudioButton">Neapolitan Pupuche</a>
+<a onclick="playSound('../modem_56k.mp3')" href="#" class="myAudioButton">56k</a>
+<a onclick="playSound('../MAG.mp3')" href="#" class="myAudioButton">MAG_HAHAHA</a>
+  </div>
+
+  <hr>
+
+
+</body>
+</html>
+

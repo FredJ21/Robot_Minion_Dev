@@ -1,6 +1,8 @@
 #!/home/pi/MINION/venv/bin/python
 #------------------------------------------------------------------------------
+#                        Minion Project
 #
+#                                                               Fred J. 06/2023
 #
 #	pip3 install opencv-python
 #	apt-get install libatlas-base-dev

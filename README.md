@@ -67,6 +67,12 @@ installation des packages système indispensables
 
     pi@rpi-minion:~ $ sudo apt install vim git python3-pip virtualenv mpg321
 
+pour la camera et le tracking :
+
+    sudo apt install -y ffmpeg
+    sudo apt install -y python3-opencv
+    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
+
 
 Activation du service de gestion des GPIOs
 
@@ -99,6 +105,7 @@ Création de l'environnement virtuel Python et installation des packages
 
     chmod +x bin/minion.py
     chmod +x bin/play_sequence.py
+    chmod +x bin/camera_minion.py
     cp bin/data.json.example bin/data.json
 
 
@@ -130,7 +137,17 @@ On peut maintenant lancer 2 terminaux  :
 
 ---
 
-#### Serveur WEB de commande
+#### Serveur WEB de commande et la gestion de la caméra
+
+ffmpeg, openCV, et la librairie mediapipe, sont utilisés pour la gestion de la caméra et le tracking
+
+    sudo apt install -y ffmpeg
+    sudo apt install -y python3-opencv
+    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
+
+    cd ~/MINION/
+    chmod +x bin/camera_minion.py
+
 
 Installation du serveur "NodeJs" et du gestionnaire de paquets "npm"
 

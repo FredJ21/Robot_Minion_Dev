@@ -60,18 +60,18 @@ Pour info : version PI OS Lite (64-bits) utilisée : 2023-12-11
 
 mise à jour système
 
-    pi@rpi-minion:~ $ sudo apt update    
-    pi@rpi-minion:~ $ sudo apt upgrade -y
+    sudo apt update    
+    sudo apt upgrade -y
 
 installation des packages système indispensables
 
-    pi@rpi-minion:~ $ sudo apt install vim git python3-pip virtualenv mpg321
+    sudo apt install vim git python3-pip virtualenv mpg321
 
 Activation du service de gestion des GPIOs
 
-    pi@rpi-minion:~ $ sudo systemctl enable pigpiod
-    pi@rpi-minion:~ $ sudo systemctl start pigpiod
-    pi@rpi-minion:~ $ sudo systemctl status pigpiod
+    sudo systemctl enable pigpiod
+    sudo systemctl start pigpiod
+    sudo systemctl status pigpiod
 
 
 
@@ -111,7 +111,7 @@ On peut maintenant lancer 2 terminaux  :
 
     ssh pi@rpi-minion
 
-    pi@rpi-minion:~ $ MINION/bin/minion.py
+    MINION/bin/minion.py
 
 - fichier de configuration des moteurs : **bin/data.json**
 - le programme ouvre un socket **UDP** sur le **port 2100** pour recevoir les commandes
@@ -122,7 +122,7 @@ On peut maintenant lancer 2 terminaux  :
 
     ssh pi@rpi-minion
 
-    pi@rpi-minion:~ $ MINION/bin/play_sequence.py seq1
+    MINION/bin/play_sequence.py seq1
 
 - ce programme lit les séquences (seq1, seq2, ... ) dans le rep bin
 - ce programme transmet les commandes ver le port UDP:2100

@@ -67,13 +67,6 @@ installation des packages système indispensables
 
     pi@rpi-minion:~ $ sudo apt install vim git python3-pip virtualenv mpg321
 
-pour la camera et le tracking :
-
-    sudo apt install -y ffmpeg
-    sudo apt install -y python3-opencv
-    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
-
-
 Activation du service de gestion des GPIOs
 
     pi@rpi-minion:~ $ sudo systemctl enable pigpiod
@@ -137,18 +130,8 @@ On peut maintenant lancer 2 terminaux  :
 
 ---
 
-#### Serveur WEB de commande et la gestion de la caméra
 
-ffmpeg, openCV, et la librairie mediapipe, sont utilisés pour la gestion de la caméra et le tracking
-
-    sudo apt install -y ffmpeg
-    sudo apt install -y python3-opencv
-    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
-
-    cd ~/MINION/
-    chmod +x bin/camera_minion.py
-
-
+#### Serveur WEB de commande
 Installation du serveur "NodeJs" et du gestionnaire de paquets "npm"
 
     sudo apt install -y nodejs npm
@@ -164,6 +147,49 @@ puis pour tester :
     http://rpi-minion:3000
     ou
     http://192.168.1.xx:3000
+
+
+#### Caméra
+
+
+
+et la gestion de la caméra
+
+ffmpeg, openCV, et la librairie mediapipe, sont utilisés pour la gestion de la caméra et le tracking
+
+    sudo apt install -y ffmpeg
+    sudo apt install -y python3-opencv
+    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
+
+    cd ~/MINION/
+    chmod +x bin/camera_minion.py
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+
+
+pip install opencv-python
+pip install mediapipe
+pip install 'protobuf<=3.20.1' --force-reinstall
+
+
+
+pour detecter la caméra :
+
+sudo v4l2-ctl --all
+
+vcgencmd get_camera
+supported=1 detected=1, libcamera interfaces=0
+
+https://www.raspberrypi.com/documentation/computers/camera_software.html#getting-started
+
+dans /boot/firmware/config.txt
+#dtoverlay=vc4-kms-v3d
+dtoverlay=ov5647
+
+
+
+
 
 
 

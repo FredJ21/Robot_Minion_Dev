@@ -8,8 +8,8 @@ const io = require('socket.io')(server);
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-
-const soundRep = "/home/pi/FRED/Raspberry/0_SON/MINION"
+const PLAYER = "/usr/bin/mpg321"
+const soundRep = "/home/pi/MINION/sounds"
 
 // UDP Sender
 const UDP = require('dgram');
@@ -85,8 +85,8 @@ io.on('connection', (socket) => {
       		return;
     	}
 
-    	// Utiliser la commande systéme pour jouer le fichier MP3
-    	const command = `omxplayer ${file}`;
+    	// commande systéme pour jouer le fichier MP3
+    	const command = PLAYER +" "+ file;
     	exec(command, (error, stdout, stderr) => {
       	if (error) {
         	console.error(`Erreur lors de la lecture du fichier MP3: ${error.message}`);
@@ -107,7 +107,7 @@ io.on('connection', (socket) => {
     	
 		console.log("[socket rx] sequence : "+ val);
 
-		const command = `/home/pi/FRED/Raspberry/MINION/Play_sequence.py ${val}`;
+		const command = `/home/pi/MINION/bin/play_sequence.py ${val}`;
 	    	exec(command, (error, stdout, stderr) => {
 	      	if (error) {
         		console.error(`Erreur : ${error.message}`);
@@ -185,9 +185,9 @@ io.on('connection', (socket) => {
     	console.log("[socket rx] mySystem : "+ val);
 
 		if (val == 'kill_omxplayer') {
-			const command = `killall omxplayer omxplayer.bin`;
+			const command = `killall `+ PLAYER;
 		    	exec(command); 
-			const command2 = "kill `ps -edf | grep Play_sequence.py | awk '{ print $2 } '`"
+			const command2 = "kill `ps -edf | grep play_sequence.py | awk '{ print $2 } '`"
 		    	exec(command2); 
 		}
 		else if (val == 'disa_opencv') {

@@ -10,7 +10,10 @@ Instructions d'installation du programme
 - Installation de l'OS sur la carte Raspberry PI
 - Configuration
 - Installation des dépendances
-- le programme principale
+- Le programme principale sur github
+- Premiers tests
+- Le serveur Web
+- La camera
 
 
 
@@ -43,9 +46,9 @@ dans Raspberry Pi Imager, on sélectionne :
 
 ** la **version Lite** permet de bénéficier d'une version sans l'environnement graphique de seulement 400Mo, tout est fait en CLI via SSH.
 
-Pour info : version PI OS Lite (64-bits) utilisée : 2023-12-11
+Pour info : version utilisée : PI OS Lite **Debian Bookworm** (64-bits) pour PI3/4/400/5 Publié le 2023-12-11 ( 0.4Go )
 
-![Pi version](img/Pi_OS_Lite.JPG)
+![Pi version](img/Pi_OS_Lite_bookworm.JPG)
 
 
 
@@ -65,7 +68,7 @@ mise à jour système
 
 installation des packages système indispensables
 
-    sudo apt install vim git python3-pip virtualenv mpg321
+    sudo apt install vim git python3-pip virtualenv mpg321 pigpiod
 
 Activation du service de gestion des GPIOs
 
@@ -98,7 +101,7 @@ Création de l'environnement virtuel Python et installation des packages
 
     chmod +x bin/minion.py
     chmod +x bin/play_sequence.py
-    chmod +x bin/camera_minion.py
+
     cp bin/data.json.example bin/data.json
 
 
@@ -127,6 +130,13 @@ On peut maintenant lancer 2 terminaux  :
 - ce programme lit les séquences (seq1, seq2, ... ) dans le rep bin
 - ce programme transmet les commandes ver le port UDP:2100
 
+***volume sonore***
+
+Le volume sonnore peut être ajuster en CLI/SSH à l'aide des utilitaires :
+
+- alsamixer
+- amixer
+
 
 ---
 
@@ -150,49 +160,6 @@ puis pour tester :
 
 
 #### Caméra
-
-
-
-et la gestion de la caméra
-
-ffmpeg, openCV, et la librairie mediapipe, sont utilisés pour la gestion de la caméra et le tracking
-
-    sudo apt install -y ffmpeg
-    sudo apt install -y python3-opencv
-    sudo apt install -y libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheora0 libva-drm2 libva-x11-2 libvdpau1 libharfbuzz0b libbluray2 libatlas-base-dev libhdf5-103 libgtk-3-0 libdc1394-25
-
-    cd ~/MINION/
-    chmod +x bin/camera_minion.py
-    source venv/bin/activate
-    pip install -r requirements.txt
-
-
-
-pip install opencv-python
-pip install mediapipe
-pip install 'protobuf<=3.20.1' --force-reinstall
-
-
-
-pour detecter la caméra :
-
-sudo v4l2-ctl --all
-
-vcgencmd get_camera
-supported=1 detected=1, libcamera interfaces=0
-
-https://www.raspberrypi.com/documentation/computers/camera_software.html#getting-started
-
-dans /boot/firmware/config.txt
-#dtoverlay=vc4-kms-v3d
-dtoverlay=ov5647
-
-
-
-
-
-
-
 # TODO
 
 

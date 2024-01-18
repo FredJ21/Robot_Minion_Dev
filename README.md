@@ -95,7 +95,7 @@ Récupération du dépot Git , depuis le répertoire /home/pi :
 Création de l'environnement virtuel Python et installation des packages
 
     cd MINION
-    virtualenv venv
+    virtualenv --system-site-packages venv
     source venv/bin/activate
     pip install -r requirements.txt
 
@@ -140,7 +140,6 @@ Le volume sonnore peut être ajuster en CLI/SSH à l'aide des utilitaires :
 
 ---
 
-
 #### Serveur WEB de commande
 Installation du serveur "NodeJs" et du gestionnaire de paquets "npm"
 
@@ -160,7 +159,62 @@ puis pour tester :
 
 
 #### Caméra
-# TODO
+
+Dans les nouvelles versions PI OS , la camera est gérée à l'aides des librairies/applications : picamera2, libcamera & rpicam-apps.
+En détail ici :
+
+- https://www.raspberrypi.com/documentation/computers/camera_software.html
+- https://github.com/raspberrypi/picamera2
+- https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+
+
+Il est nécessaire de supprimer et re créer l'environnement virtuel Python, si il n'a pas été créé avec l'option **--system-site-packages** ( plus haut )
+
+    cd ~/MINION/
+    rm -fr venv
+    virtualenv --system-site-packages venv
+    pip install -r requirements.txt
+
+en suite dans le répertoire **camera** ,
+
+2 programmes permettent de tester la caméra dans un environnement Linux avec le bureau :
+
+- test_camera_simple.py
+- test_camera_simple_mediapipe.py
+
+2 autres programmes permettent transmettre le flux vidéo sur une page web distante
+
+- test_camera_to_webpage.py
+- test_camera_to_webpage_mediapipe.py
+
+Enfin le script principalement permet de réaliser le tracking et de transmettre au minion :
+
+- camera_to_minion.py
+
+
+donc :
+
+    ssh pi@rpi-minion
+    MINION/camera/camera_to_minion.py
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---

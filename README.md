@@ -177,6 +177,8 @@ En détail ici :
 
 Il est nécessaire de supprimer et re créer l'environnement virtuel Python, si il n'a pas été créé avec l'option **--system-site-packages** ( plus haut )
 
+Ref [BUG] : https://github.com/raspberrypi/picamera2/issues/341
+
     cd ~/MINION/
     rm -fr venv
     virtualenv --system-site-packages venv

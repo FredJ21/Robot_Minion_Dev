@@ -58,12 +58,12 @@ app.use(express.static(__dirname + '/public'));
 // ----------------------------------------------------------------------------
 //			Reverse Proxy 
 // ----------------------------------------------------------------------------
-const videoProxy = createProxyMiddleware('/video_feed', {
-  target: 'http://localhost:8000',
-  ws: true
-});
+//const videoProxy = createProxyMiddleware('/video_feed', {
+//  target: 'http://127.0.0.1:8000',
+//  ws: true
+//});
 
-app.use(videoProxy);
+//app.use(videoProxy);
 
 
 // ----------------------------------------------------------------------------

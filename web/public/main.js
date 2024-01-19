@@ -37,6 +37,15 @@ function mySystem(val) {
 function sequence(val) {
   socket.emit('sequence', val);
 }
+// ----------------------------------------------------------------------------
+// pour définir le chemin du flux vidéo (avec l'adresse IP)
+//
+function setVideoSource() {
+  var videoElement = document.getElementById('videoStream');
+  var hostName = window.location.hostname;
+  var videoUrl = 'http://' + hostName + ':8000/video_feed';
+  videoElement.src = videoUrl;
+}
 
 // ----------------------------------------------------------------------------
 // 	Clavier
@@ -78,9 +87,13 @@ setInterval(function() {
 }, 100);
 
 // ----------------------------------------------------------------------------
+// Executer après le chargement du DOM 
 // Gestion de la souris sur l'image
 
 document.addEventListener('DOMContentLoaded', function() {
+  
+  setVideoSource();
+
   const imageElement = document.getElementById('video');
 
   const img_min_X = 0;
@@ -92,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const mapped_max_X = 700;
   const mapped_min_Y = 350;
   const mapped_max_Y = 650;
+
 
 
   let mouseDown = false;

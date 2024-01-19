@@ -68,7 +68,7 @@ mise à jour système
 
 installation des packages système indispensables
 
-    sudo apt install vim git python3-pip virtualenv mpg321 pigpiod
+    sudo apt install vim git python3-pip virtualenv mpg321 pigpiod nodejs npm python3-picamera2
 
 Activation du service de gestion des GPIOs
 
@@ -83,6 +83,8 @@ Activation du service de gestion des GPIOs
 Récupération du dépot Git , depuis le répertoire /home/pi :
 
     git clone https://github.com/FredJ21/Robot_Minion_Dev.git  MINION
+
+...
 
     Cloning into 'MINION'...
     remote: Enumerating objects: 38, done.
@@ -143,7 +145,12 @@ Le volume sonnore peut être ajuster en CLI/SSH à l'aide des utilitaires :
 #### Serveur WEB de commande
 Installation du serveur "NodeJs" et du gestionnaire de paquets "npm"
 
+si pas déjà fait plus haut :
+
     sudo apt install -y nodejs npm
+
+Installation des dépendances :
+
     cd ~/MINION/web/
     npm install
 
@@ -175,6 +182,10 @@ Il est nécessaire de supprimer et re créer l'environnement virtuel Python, si 
     virtualenv --system-site-packages venv
     pip install -r requirements.txt
 
+et si pas déjà fait plus haut :
+
+    sudo apt install -y python3-picamera2
+
 en suite dans le répertoire **camera** ,
 
 2 programmes permettent de tester la caméra dans un environnement Linux avec le bureau :
@@ -196,24 +207,6 @@ donc :
 
     ssh pi@rpi-minion
     MINION/camera/camera_to_minion.py
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

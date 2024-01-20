@@ -76,7 +76,7 @@ Activation du service de gestion des GPIOs
     sudo systemctl start pigpiod
     sudo systemctl status pigpiod
 
-
+---
 
 #### Dépôt GIT
 
@@ -106,6 +106,7 @@ Création de l'environnement virtuel Python et installation des packages
 
     cp bin/data.json.example bin/data.json
 
+---
 
 #### Premiers Tests
 
@@ -164,6 +165,7 @@ puis pour tester :
     ou
     http://192.168.1.xx:3000
 
+---
 
 #### Caméra
 

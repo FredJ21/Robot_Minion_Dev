@@ -12,7 +12,7 @@ Type=simple
 User=pi
 Group=pi
 
-WorkingDirectory=/home/MINION
+WorkingDirectory=/home/pi/MINION
 ExecStart=/home/pi/MINION/venv/bin/python  /home/pi/MINION/bin/minion.py
 
 Restart=always

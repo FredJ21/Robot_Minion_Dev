@@ -103,7 +103,7 @@ p {
 }
 
 .mySystemButton {
-	box-shadow:inset 0px 1px 20px 16px #bee2f9;
+	box-shadow:inset 0px 1px 25px 16px #bee2f9;
 	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
 	background-color:#63b8ee;
 	border-radius:32px;

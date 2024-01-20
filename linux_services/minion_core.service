@@ -1,0 +1,22 @@
+#------------------------------------------------------------------------------
+#							MINION services
+#													Fred J. 	Juin 2023
+#													Fred J.		Janvier 2024
+#------------------------------------------------------------------------------
+[Unit]
+Description=Minion Core
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+
+WorkingDirectory=/home/MINION
+ExecStart=/home/pi/MINION/venv/bin/python  /home/pi/MINION/bin/minion.py
+
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target

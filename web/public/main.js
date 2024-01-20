@@ -41,7 +41,7 @@ function sequence(val) {
 // pour définir le chemin du flux vidéo (avec l'adresse IP)
 //
 function setVideoSource() {
-  var videoElement = document.getElementById('videoStream');
+  var videoElement = document.getElementById('video');
   var hostName = window.location.hostname;
   var videoUrl = 'http://' + hostName + ':8000/video_feed';
   videoElement.src = videoUrl;

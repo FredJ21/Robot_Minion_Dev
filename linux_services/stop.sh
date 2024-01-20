@@ -4,6 +4,6 @@
 #------------------------------------------------------------------------------
 
 clear
-sudo systemctl status minion_core
-sudo systemctl status minion_web
-sudo systemctl status minion_cam
+sudo systemctl stop minion_core
+sudo systemctl stop minion_web
+sudo systemctl stop minion_cam

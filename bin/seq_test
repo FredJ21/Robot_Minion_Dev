@@ -1,0 +1,12 @@
+{ "Bras_D_1":"0", "Bras_D_2":"0", "Bras_D":"home" }
+sleep 3  
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_D":"home" }
+sleep 3  
+{ "Bras_D_1":"4000", "Bras_D_2":"0", "Bras_D":"home" }
+sleep 3  
+{ "Bras_D_1":"4000", "Bras_D_2":"home", "Bras_D":"530" }
+sleep 3  
+{ "Bras_D_1":"home", "Bras_D_2":"0", "Bras_D":"530" }
+sleep 3  
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_D":"home" }
+sleep 3  

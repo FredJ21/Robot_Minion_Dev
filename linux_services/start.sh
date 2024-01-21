@@ -1,7 +1,8 @@
 #------------------------------------------------------------------------------
-#							MINION services
-#													Fred J.		Janvier 2024
+#                                 MINION services
+#                                                       Fred J.   Janvier 2024
 #------------------------------------------------------------------------------
+
 set -x
 
 sudo systemctl start minion_core

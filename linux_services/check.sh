@@ -4,6 +4,6 @@
 #------------------------------------------------------------------------------
 
 
-sudo systemctl status minion_core
-sudo systemctl status minion_web
-sudo systemctl status minion_cam
+sudo systemctl status minion_core --no-pager
+sudo systemctl status minion_web --no-pager
+sudo systemctl status minion_cam --no-pager

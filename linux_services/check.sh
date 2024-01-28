@@ -1,7 +1,8 @@
 #------------------------------------------------------------------------------
-#							MINION services
-#													Fred J.		Janvier 2024
+#				MINION services
+#						Fred J.		Janvier 2024
 #------------------------------------------------------------------------------
+
 
 
 sudo systemctl status minion_core --no-pager

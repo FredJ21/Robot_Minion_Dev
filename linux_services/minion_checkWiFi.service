@@ -1,0 +1,22 @@
+#------------------------------------------------------------------------------
+#                                 MINION services
+#                                                       Fred J.   Juin 2023
+#                                                       Fred J.   Janvier 2024
+#------------------------------------------------------------------------------
+[Unit]
+Description=Minion Check WiFi
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+
+WorkingDirectory=/home/pi
+ExecStart=/bin/bash /home/pi/MINION/linux_services/check-wifi.sh
+
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target

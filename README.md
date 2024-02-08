@@ -101,9 +101,6 @@ Création de l'environnement virtuel Python et installation des packages
     source venv/bin/activate
     pip install -r requirements.txt
 
-    chmod +x bin/minion.py
-    chmod +x bin/play_sequence.py
-
     cp bin/data.json.example bin/data.json
 
 ---

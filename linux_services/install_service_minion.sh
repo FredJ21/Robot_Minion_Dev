@@ -11,8 +11,9 @@ sudo systemctl disable minion_core
 sudo systemctl disable minion_web
 sudo systemctl disable minion_cam
 
-
-sudo cp *.service /etc/systemd/system
+sudo cp minion_core.service /etc/systemd/system
+sudo cp minion_web.service /etc/systemd/system
+sudo cp minion_cam.service /etc/systemd/system
 
 sudo systemctl enable minion_core
 sudo systemctl enable minion_web

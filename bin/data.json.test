@@ -11,8 +11,8 @@
         "motor_type" : "servo",
         "reverse"    : false,
         "pwm_min"    : 300,
-        "pwm_max"    : 700,
-        "pwm_home"   : 500,
+        "pwm_max"    : 800,
+        "pwm_home"   : 600,
         "gpio"       : 5
     },{
 	"name": "Oeil_Y",
@@ -24,21 +24,21 @@
         "gpio"       : 6
     },{
 	"name": "Bras_D",
-        "motor_type" : "servo",
+        "motor_type" : "pca9685",
         "reverse"    : false,
         "pwm_min"    : 0,
         "pwm_max"    : 1000,
         "pwm_home"   : 200,
         "pwm_offset" : -35,
-        "gpio"       : 12
+        "gpio"       : 11
     },{
 	"name": "Bras_G",
-        "motor_type" : "servo",
+        "motor_type" : "pca9685",
         "reverse"    : true,
         "pwm_min"    : 0,
         "pwm_max"    : 1000,
         "pwm_home"   : 200,
-        "gpio"       : 13
+        "gpio"       : 7 
     },{
 	"name": "Bouche_D",
         "motor_type" : "servo",
@@ -78,7 +78,7 @@
         "motor_type" : "ST3215",
         "pwm_min"    : 1024,
         "pwm_max"    : 3072,
-        "pwm_home"   : 2048,
+        "pwm_home"   : 2950,
         "gpio"       : 11
      },{
 	"name": "Bras_D_2",
@@ -87,6 +87,23 @@
         "pwm_max"    : 3072,
         "pwm_home"   : 2048,
         "gpio"       : 12
+
+     },{
+	"name": "Bras_G_1",
+        "motor_type" : "ST3215",
+        "reverse"    : true,
+        "pwm_min"    : 1024,
+        "pwm_max"    : 3072,
+        "pwm_home"   : 2950,
+        "gpio"       : 21
+      },{
+	"name": "Bras_G_2",
+        "motor_type" : "ST3215",
+        "reverse"    : true,
+        "pwm_min"    : 1024,
+        "pwm_max"    : 3072,
+        "pwm_home"   : 2048,
+        "gpio"       : 22
     }
   ]
 }

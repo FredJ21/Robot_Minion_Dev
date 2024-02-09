@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const img_min_Y = 0;
   const img_max_Y = 384;
 
-  const mapped_min_X = 300;
-  const mapped_max_X = 700;
+  const mapped_min_X = 800;
+  const mapped_max_X = 300;
   const mapped_min_Y = 350;
   const mapped_max_Y = 650;
 

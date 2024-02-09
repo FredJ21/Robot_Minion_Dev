@@ -11,6 +11,7 @@ from time import time
 from simple_file_checksum import get_checksum
 from numpy import interp
 
+from adafruit_servokit import ServoKit
 import pigpio
 import serial
 
@@ -21,8 +22,10 @@ SOUNDS_REP = os.path.dirname(__file__) +"/../sounds/"
 
 
 pi = pigpio.pi()
+pca = ServoKit(channels=16)
 
-PWM_FREQUENCY = 100         # Servo à 100Hz
+#PWM_FREQUENCY = 100         # Servo à 100Hz
+PWM_FREQUENCY = 50         # Servo à 50Hz
 PWM_FREQUENCY_CC = 10000    # Moteur Courant Continu à 10kHz
 ANGLE_RANGE = (0, 180)
 PULSE_RANGE = (500, 2500)
@@ -189,6 +192,21 @@ class motor_class(object):
                 pulse_width = interp(self.consigne, [0,1000], [PULSE_RANGE[1], PULSE_RANGE[0]])
 
             pi.set_servo_pulsewidth(self.gpio, pulse_width)             # send to GPIO
+     
+        # ----------
+        elif self.motor_type == "pca9685" :
+
+            pca.servo[ self.gpio ].set_pulse_width_range( PULSE_RANGE[0], PULSE_RANGE[1] )
+            self.consigne = self.pwm_home
+
+            if not self.reverse: 
+                angle = interp(self.consigne, [0,1000], [ 0,180 ] )
+            else:
+                angle = interp(self.consigne, [0,1000], [ 180, 0 ] )
+
+            print("init pca9685", self.consigne, angle)
+            pca.servo[ self.gpio ].angle = angle
+
 
         # ----------
         elif self.motor_type == "CC" :
@@ -384,17 +402,42 @@ class motor_process(object):
                             pulse_width = interp(val, [0,1000], [PULSE_RANGE[1], PULSE_RANGE[0]])
                         
 
-                        #print(self.data[i].gpio, pulse_width)
+                        print(self.data[i].gpio, pulse_width)
                         pi.set_servo_pulsewidth(self.data[i].gpio, pulse_width)         # Send to GPIO
                         self.data[i].pwm_lastChg = time()
         
        
-                    if time() > self.data[i].pwm_lastChg + 10 :
-                        pi.set_servo_pulsewidth(self.data[i].gpio, 0)                   # Send to GPIO
+#                    if time() > self.data[i].pwm_lastChg + 10 :
+#                        pi.set_servo_pulsewidth(self.data[i].gpio, 0)                   # Send to GPIO
+
+                # ---------------------------------------------------
+                # traitement de la consigne SERVO de type PCA9685
+                if self.data[i].motor_type == "pca9685" :
+
+                    if self.data[i].current != self.data[i].consigne :
+                        self.data[i].current = self.data[i].consigne
+                    
+                        # map la consigne (0->1000) en pulse (500->2500)
+
+                        val = self.data[i].current + self.data[i].pwm_offset
+                        if val > 1000 :  val = 1000
+                        if val < 0 :     val = 0
+
+                        #print("-",self.data[i].consigne,"-")
+                        if not self.data[i].reverse: 
+                            angle = interp(self.data[i].consigne, [0,1000], [ 0,180 ] )
+                        else:
+                            angle = interp(self.data[i].consigne, [0,1000], [ 180, 0 ] )
+
+                        print("pca9685 ", self.data[i].gpio, angle)
+                        pca.servo[ self.data[i].gpio ].angle = angle
+
+
+
 
                 # ---------------------------------------------------
                 # traitement de la consigne CC
-                if self.data[i].motor_type == "CC" :
+                elif self.data[i].motor_type == "CC" :
                         
 
                     if self.data[i].current != self.data[i].consigne :
@@ -440,13 +483,18 @@ class motor_process(object):
 
                 # ---------------------------------------------------
                 # traitement de la consigne pour les servos ST3215
-                if self.data[i].motor_type == "ST3215" and self.serial_port_1 != None:
+                elif self.data[i].motor_type == "ST3215" and self.serial_port_1 != None:
 
                     if self.data[i].current != self.data[i].consigne :
                         self.data[i].current = self.data[i].consigne
 
                         srv_id = self.data[i].gpio
-                        srv_pos = self.data[i].consigne
+                        
+                        if not self.data[i].reverse: 
+                            srv_pos = self.data[i].consigne
+                        else:
+                            srv_pos = 4096 - self.data[i].consigne
+
                         cmd = 'writePos '+ str(srv_id) +' '+ str(srv_pos) +' 1000 50\n\r'
 
                         #print("ST3215 : ", self.data[i].gpio, self.data[i].consigne)
@@ -510,8 +558,9 @@ class receiver_UDP(object):
         
             try :
                 data_rx_encoded, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-                #print(self.head+ "received message: %s" % data_rx)
-            except:
+                #print(self.head+ "received message: %s" % data_rx_encoded)
+            except Exception as e:
+                #print(e)
                 continue
 
             try :

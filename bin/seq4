@@ -1,0 +1,57 @@
+{ "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"home", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D_1":"home", "Bras_D_2":"1000", "Bras_G_1":"home", "Bras_G_2":"1000" }
+sleep 2
+{ "Bras_D_1":"2000", "Bras_D_2":"1000", "Bras_G_1":"2000", "Bras_G_2":"1000" }
+sleep 2
+{ "Bras_D":"500", "Bras_G":"500" }
+sleep 2
+{ "Bras_D_1":"3000", "Bras_D_2":"home", "Bras_G_1":"3000", "Bras_G_2":"home" }
+{ "Bouche_D": "20", "Bouche_G": "20"}
+sleep 2
+{ "Bras_D":"450", "Bras_G":"550" }
+sleep 1
+{ "Bras_D":"550", "Bras_G":"450" }
+sleep 2
+{ "Bras_D":"800", "Bras_G":"800" }
+sleep 2
+{ "Bras_D_1":"2000", "Bras_D_2":"3000", "Bras_G_1":"2000", "Bras_G_2":"3000" }
+sleep 2
+{ "Bras_D":"200", "Bras_G":"200" }
+{ "Bras_D_2":"home", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"home", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D":"200", "Bras_G":"800" }
+sleep 2
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"2000", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D":"800", "Bras_G":"800" }
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"2000", "Bras_G_2":"3000" }
+sleep 2
+{ "Bras_D_1":"3000", "Bras_D_2":"home", "Bras_G_1":"3000", "Bras_G_2":"home" }
+{ "Bouche_D": "20", "Bouche_G": "20"}
+sleep 2
+{ "Bras_D":"450", "Bras_G":"550" }
+sleep 1
+{ "Bras_D":"550", "Bras_G":"450" }
+sleep 2
+{ "Bras_D":"800", "Bras_G":"800" }
+sleep 2
+{ "Bras_D_1":"2000", "Bras_D_2":"3000", "Bras_G_1":"2000", "Bras_G_2":"3000" }
+sleep 2
+{ "Bras_D":"200", "Bras_G":"200" }
+{ "Bras_D_2":"home", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"home", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D":"200", "Bras_G":"800" }
+sleep 2
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"2000", "Bras_G_2":"home" }
+sleep 2
+{ "Bras_D":"800", "Bras_G":"800" }
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"2000", "Bras_G_2":"3000" }
+sleep 2
+{ "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }
+{ "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"home", "Bras_G_2":"home" }

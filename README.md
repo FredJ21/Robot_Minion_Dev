@@ -14,6 +14,9 @@ Instructions d'installation du programme
 - Premiers tests
 - Le serveur Web
 - La camera
+- Démarrage Auto des services
+- Option : Module USB WiFi
+- Option : Configuration WiFi et IP
 
 
 

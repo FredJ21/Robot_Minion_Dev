@@ -215,7 +215,36 @@ donc :
 
 #### Démarrage Auto des services
 
-# TODO
+Afin de démmarrer automatiquement l'ensemble des services, quelques scripts bash sont disponibles pour :
+
+- installer les services ( en démarrage auto   
+- arréter / démarrer les services
+- vérifier les services
+
+donc :
+
+    ssh pi@rpi-minion
+    cd MINION/linux_services
+    ./install_service_minion.sh
+
+puis, pour vérifier :
+
+    ./check.sh
+
+    ● minion_core.service - Minion Core
+     Loaded: loaded (/etc/systemd/system/minion_core.service; enabled; preset: enabled)
+     Active: active (running) since ...
+
+    ● minion_web.service - Minion Web
+     Loaded: loaded (/etc/systemd/system/minion_web.service; enabled; preset: enabled)
+     Active: active (running) since ...
+
+    ● minion_cam.service - Minion Camera
+     Loaded: loaded (/etc/systemd/system/minion_cam.service; enabled; preset: enabled)
+     Active: active (running) since ...
+
+
+
 
 ---
 

@@ -248,11 +248,94 @@ puis, pour vérifier :
 
 ---
 
-#### Option : Carte WiFi
+#### Option : Module USB WiFi
 
-# TODO
+Afin d'améliorer et de fiabiliser la performance du réseau WiFi, j'ai ajouté à la carte Raspberry, un module USB alfa  AWUS036ACS
+
+Ce module nécessite la compilation et l'installation de son drivers
+
+<img src="img/carte_alfa_AWUS036ACS.JPG" width=300px />
 
 
+donc, dans /home/pi :
+
+    sudo -s
+
+    # installation des dépendances de compilation
+    apt install raspberrypi-kernel-headers dkms -y
+
+    # récupération du drivers
+    git clone https://github.com/aircrack-ng/rtl8812au
+    cd rtl8812au
+
+    # préparation pour la version 64bits
+    sed -i 's/CONFIG_PLATFORM_I386_PC = y/CONFIG_PLATFORM_I386_PC = n/g' Makefile
+    sed -i 's/CONFIG_PLATFORM_ARM64_RPI = n/CONFIG_PLATFORM_ARM64_RPI = y/g' Makefile
+
+    export ARCH=arm64
+    sed -i 's/^MAKE="/MAKE="ARCH=arm64\ /' dkms.conf
+
+    # compilation et installation
+    make dkms_install
+
+    # vérification
+    dkms status
+
+Nous avons donc maintenant 2 interfaces WiFi
+
+- wlan0 --> la carte interne de la Raspberry PI
+- wlan1 --> le module USB Alfa
+
+      ifconfig -a
+
+        wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+            inet 10.1.23.19  netmask 255.255.255.0  broadcast 10.1.23.255
+            inet6 fe80::dde1:e981:c71f:2aff  prefixlen 64  scopeid 0x20<link>
+            ether d8:3a:dd:18:97:04  txqueuelen 1000  (Ethernet)
+            RX packets 154  bytes 13757 (13.4 KiB)
+            RX errors 0  dropped 0  overruns 0  frame 0
+            TX packets 154  bytes 20583 (20.1 KiB)
+            TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+        wlan1: flags=4099<UP,BROADCAST,MULTICAST>  mtu 2312
+              ether 00:c0:ca:b3:67:0d  txqueuelen 1000  (Ethernet)
+              RX packets 0  bytes 0 (0.0 B)
+              RX errors 0  dropped 0  overruns 0  frame 0
+              TX packets 0  bytes 0 (0.0 B)
+              TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+Il est possible de désactiver la carte WiFi interne afin de ne conserver que le module USB :
+
+
+    # dans  /boot/config.txt
+    # ajout de :
+
+        dtoverlay=pi3-disable-bt
+        dtoverlay=pi3-disable-wifi
+
+
+    systemctl stop bluetooth
+    systemctl disable bluetooth
+
+    reboot
+
+--> la carte Alfa passe en wlan0
+
+
+#### Option : Configuration WiFi et IP
+
+Il est également possible de modifier la configuration WiFi et IP par défaut :
+
+  Dans :
+  /etc/NetworkManager/system-connections/preconfigured.nmconnection
+
+    [ipv4]
+       method=manual
+       addresses1=10.1.23.19/24,10.1.23.1
+       dns=8.8.8.8;
+
+    sudo systemctl restart NetworkManager
 
 
 

@@ -50,19 +50,21 @@ p {
 
 
 .mySeqButton {
-	box-shadow:inset 0px 1px 0px 0px #9acc85;
-	background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-	background-color:#74ad5a;
-	border-radius:42px;
-	border:1px solid #3b6e22;
+	box-shadow:inset 0px 1px 25px 16px #7bc762;
+	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	background-color:#63b8ee;
+	border-radius:32px;
+	border:4px solid #3866a3;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+	color:#14396a;
 	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 76px;
+	font-size:16px;
+	padding:8px 50px;
 	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+	margin-bottom: 15px;
+
 }
 .mySeqButton:hover {
 	background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);

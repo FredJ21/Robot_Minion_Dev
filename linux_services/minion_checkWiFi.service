@@ -9,8 +9,8 @@ After=multi-user.target
 
 [Service]
 Type=simple
-User=pi
-Group=pi
+User=root
+Group=root
 
 WorkingDirectory=/home/pi
 ExecStart=/bin/bash /home/pi/MINION/linux_services/check-wifi.sh

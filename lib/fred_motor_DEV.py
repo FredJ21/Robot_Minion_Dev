@@ -251,6 +251,16 @@ class motor_class(object):
         try :
             if special_Action == '+' :          consigne = self.get_current() + int(consigne)
             elif special_Action == '-' :        consigne = self.get_current() + int(consigne)   # !! consigne negative !!
+            elif special_Action == '%' :      
+                                                val = int(consigne[1:])
+                                                if      val > 100 : val = 100
+                                                elif    val < 0   : val = 0
+
+                                                max = self.pwm_max
+                                                min = self.pwm_min
+
+                                                consigne = min + ( max - min ) * val /100
+                    
             else :                              consigne = int(consigne)
         except Exception as e:
             print("consigne error : ", e)

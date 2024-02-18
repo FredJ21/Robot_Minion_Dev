@@ -1,2 +1,4 @@
 __pycache__/
 bin/data.json
+test/
+tmp/

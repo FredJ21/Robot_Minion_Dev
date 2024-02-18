@@ -20,9 +20,9 @@ from fred_lib       import col
 from fred_lib       import Logger
 from fred_lib       import Led_and_button_control
 
-from fred_motor_v2     import read_config_motor
-from fred_motor_v2     import motor_process
-from fred_motor_v2     import receiver_UDP
+from fred_motor_DEV     import read_config_motor
+from fred_motor_DEV     import motor_process
+from fred_motor_DEV     import receiver_UDP
 
 
 # -----------------------------------------------

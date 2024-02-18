@@ -9,6 +9,8 @@ from picamera2 import Picamera2
 
 import mediapipe as mp
 
+from time import sleep
+
 import threading
 import psutil
 import socket
@@ -21,6 +23,12 @@ from time import time
 picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
 picam2.start()
+
+# TEST - Lecture video
+TEST_MODE   = False
+video_path  = '/home/pi/MINION/test/test.mjpeg'
+cap         = cv2.VideoCapture(video_path)
+
 
 # --------------------
 # Mediapipe
@@ -44,7 +52,7 @@ s = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
 # --------------------
 PROCESSING_FLAG_FILE = "/tmp/enable_minion_opencv"
 
-processing_freq = 0.1                 # Traitement OpenCV toutes les X secondes
+processing_freq = 0.01                 # Traitement OpenCV toutes les X secondes
 processing_last_result = None
 processing_last = 0
 
@@ -72,13 +80,20 @@ def main():
 
     while True :
 
-        img_tmp = picam2.capture_array()
-        img_tmp = cv2.cvtColor(img_tmp, cv2.COLOR_BGRA2BGR)
+        if not TEST_MODE :
 
-        if exists(PROCESSING_FLAG_FILE) :
-            img = video_processing(img_tmp)
+            img_tmp = picam2.capture_array()
+            img_tmp = cv2.cvtColor(img_tmp, cv2.COLOR_BGRA2BGR)
+
+
+            if exists(PROCESSING_FLAG_FILE) :
+                img = video_processing(img_tmp)
+            else :
+                img = img_tmp
+
         else :
-            img = img_tmp
+            sleep(10)
+
 
 # -----------------------------------------------------------------------------
 def video_processing(frame):
@@ -90,9 +105,8 @@ def video_processing(frame):
 
     if time() > processing_last + processing_freq :
 
-        print(time())
+        #print(time())
         processing_last_result = pose.process(frame)
-
         processing_last = time()
 
 
@@ -146,30 +160,50 @@ def video_processing(frame):
         visibility_limit = 0.5
         p = results.pose_landmarks.landmark
 
-        # --------------------
-        # Nez
+        # ----------------------------------------
+        #           Suivi du visage
+        # ----------------------------------------
+        #   0 --> Nez
+        #
         if p[0].visibility > visibility_limit:
 
-            #print(p[0].x, p[0].y)
+            # print(p[0].x, p[0].y)
 
-            #if   p[0].x > 0.7 :       send('{ "Oeil_X":"-100" }') 
             if   p[0].x > 0.6 :       send('{ "Oeil_X":"-5" }')
-            #elif p[0].x < 0.3 :       send('{ "Oeil_X":"+100" }') 
             elif p[0].x < 0.4 :       send('{ "Oeil_X":"+5" }')
 
-            #if   p[0].y > 0.7 :       send('{ "Oeil_Y":"+100" }') 
             if p[0].y > 0.6 :       send('{ "Oeil_Y":"+5" }')
-            #elif p[0].y < 0.3 :       send('{ "Oeil_Y":"-100" }') 
             elif p[0].y < 0.4 :       send('{ "Oeil_Y":"-5" }')
+           
+            '''
+            p_x = 100 - int(p[0].x *100)
+            p_y = int(p[0].y *100)
+
+            send('{ "Oeil_X":"%'+ str(p_x) +'", "Oeil_Y":"%'+ str(p_y) +'" }')
+            '''
 
 
 
-        # --------------------
-        # Bras Droite
+
+        # ----------------------------------------
+        #           suivi de bras droit
+        # ----------------------------------------
+        #   12 --> epaule
+        #   14 --> coude
+        #   16 --> poignet
+        
         if p[12].visibility > visibility_limit \
             and p[14].visibility > visibility_limit \
             and p[16].visibility > visibility_limit :
 
+        
+            print(p[12].z, p[14].z, p[16].z)
+
+
+
+
+
+        '''
             if p[12].y > p[14].y and p[14].y > p[16].y :
 
                 #print ("Droit OK --> HAUT")
@@ -196,6 +230,7 @@ def video_processing(frame):
                 #print ("Gauche OK --> BAS")
                 send('{ "Bras_D":"200" }')
 
+        '''
 
     return frame
 
@@ -220,7 +255,18 @@ class VideoStreamHandler(BaseHTTPRequestHandler):
 
             while True:
 
-                _, jpeg = cv2.imencode('.jpg', img)
+                if TEST_MODE :
+                    ret, local_img = cap.read()
+            
+                    if exists(PROCESSING_FLAG_FILE) :
+                        local_img = video_processing(local_img)
+                    
+                    _, jpeg = cv2.imencode('.jpg', local_img)
+
+                else :
+                    _, jpeg = cv2.imencode('.jpg', img)
+
+
                 frame = jpeg.tobytes()
 
                 try:
@@ -235,6 +281,7 @@ class VideoStreamHandler(BaseHTTPRequestHandler):
                     break
 
 
+                #sleep(1/30)
 
         else:
             self.send_response(404)

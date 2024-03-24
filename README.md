@@ -20,6 +20,7 @@ Instructions d'installation du programme
 
 
 
+
 <img src="img/minion.gif" width=100px /><img src="img/minion.gif" width=150px /><img src="img/minion.gif" width=100px /><img src="img/minion.gif" width=100px /><img src="img/minion.gif" width=150px /><img src="img/minion.gif" width=100px />
 
 ---

@@ -19,14 +19,21 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from os.path import exists
 from time import time 
 
-# --------------------
+import sys
+import os
+sys.path.append(os.path.dirname(__file__) +'/../lib')
+
+from fred_lib_DEV       import data_filter
+
+
+# -----------------------------------------------------------------------------
 picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
 picam2.start()
 
 # TEST - Lecture video
 TEST_MODE   = False
-video_path  = '/home/pi/MINION/test/test.mjpeg'
+video_path  = '/home/pi/MINION/test/test_2.mjpeg'
 cap         = cv2.VideoCapture(video_path)
 
 
@@ -56,6 +63,10 @@ processing_freq = 0.01                 # Traitement OpenCV toutes les X secondes
 processing_last_result = None
 processing_last = 0
 
+# --------------------
+
+
+my_filter = data_filter()
 
 
 # -----------------------------------------------------------------------------
@@ -165,24 +176,35 @@ def video_processing(frame):
         # ----------------------------------------
         #   0 --> Nez
         #
-        if p[0].visibility > visibility_limit:
+        if p[0].visibility > visibility_limit and not TEST_MODE:
 
-            # print(p[0].x, p[0].y)
 
-            if   p[0].x > 0.6 :       send('{ "Oeil_X":"-5" }')
-            elif p[0].x < 0.4 :       send('{ "Oeil_X":"+5" }')
+            x = my_filter.add_and_average("p_0_x", p[0].x)
+            y = my_filter.add_and_average("p_0_y", p[0].y)
+            
+            #print(round(p[0].x, 3), round(p[0].y, 3), round(x, 3), round(y, 3))
+            #print(round(x, 3), round(y, 3))
 
-            if p[0].y > 0.6 :       send('{ "Oeil_Y":"+5" }')
-            elif p[0].y < 0.4 :       send('{ "Oeil_Y":"-5" }')
-           
+            if   x > 0.75 :       send('{ "Oeil_X":"-30" }')
+            elif x > 0.65 :       send('{ "Oeil_X":"-20" }')
+            elif x > 0.55 :       send('{ "Oeil_X":"-5" }')
+            elif x < 0.25 :       send('{ "Oeil_X":"+30" }')
+            elif x < 0.35 :       send('{ "Oeil_X":"+20" }')
+            elif x < 0.45 :       send('{ "Oeil_X":"+5" }')
+
+            if   y > 0.75 :       send('{ "Oeil_Y":"+30" }')
+            elif y > 0.65 :       send('{ "Oeil_Y":"+20" }')
+            elif y > 0.55 :       send('{ "Oeil_Y":"+5" }')
+            elif y < 0.25 :       send('{ "Oeil_Y":"-30" }')
+            elif y < 0.35 :       send('{ "Oeil_Y":"-20" }')
+            elif y < 0.45 :       send('{ "Oeil_Y":"-5" }')
+
             '''
             p_x = 100 - int(p[0].x *100)
             p_y = int(p[0].y *100)
 
             send('{ "Oeil_X":"%'+ str(p_x) +'", "Oeil_Y":"%'+ str(p_y) +'" }')
             '''
-
-
 
 
         # ----------------------------------------
@@ -196,41 +218,107 @@ def video_processing(frame):
             and p[14].visibility > visibility_limit \
             and p[16].visibility > visibility_limit :
 
+
+            epaule_x    = my_filter.add_and_average("p_12_x", p[12].x)
+            epaule_y    = my_filter.add_and_average("p_12_y", p[12].y)
+            epaule_z    = my_filter.add_and_average("p_12_z", p[12].z)
+
+            coude_x     = my_filter.add_and_average("p_14_x", p[14].x)
+            coude_y     = my_filter.add_and_average("p_14_y", p[14].y)
+            coude_z     = my_filter.add_and_average("p_14_z", p[14].z)
+
+            poignet_x   = my_filter.add_and_average("p_16_x", p[16].x)
+            poignet_y   = my_filter.add_and_average("p_16_y", p[16].y)
+            poignet_z   = my_filter.add_and_average("p_16_z", p[16].z)
         
-            print(p[12].z, p[14].z, p[16].z)
+
+            y_distance_epaule_coude  = abs(epaule_y - coude_y)
+            y_distance_coude_poignet = abs(coude_y - poignet_y)
+
+            z_distance_epaule_poignet  = abs(epaule_z - poignet_z)
+
+
+            #print(epaule_y, coude_y, poignet_y, y_distance_epaule_coude, y_distance_coude_poignet)
+            #print( round(z_distance_epaule_poignet, 3) )
+
+            if   poignet_y < coude_y and coude_y < epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
+                    print( "[Bras Droit] - vers le haut")
+                    send('{ "Bras_G":"800", "Bras_G_1":"home", "Bras_G_2":"home" }')
+
+            elif poignet_y > coude_y and coude_y > epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
+                    print( "[Bras Droit] - vers le bas")
+                    send('{ "Bras_G":"200", "Bras_G_1":"home", "Bras_G_2":"home" }')
+
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet < 0.2:
+                    print( "[Bras Droit] - tendu vers la droite")
+                    send('{ "Bras_G":"500", "Bras_G_1":"2000", "Bras_G_2":"home" }')
+            
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet > 0.2:
+                    print( "[Bras Droit] - tendu vers l'avant")
+                    send('{ "Bras_G":"500", "Bras_G_1":"home", "Bras_G_2":"home" }')
+                
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet > 0.05 :
+                    print( "[Bras Droit] - Popeye")
+                    send('{ "Bras_G":"500", "Bras_G_1":"2000", "Bras_G_2":"1000" }')
 
 
 
-
-
-        '''
-            if p[12].y > p[14].y and p[14].y > p[16].y :
-
-                #print ("Droit OK --> HAUT")
-                send('{ "Bras_G":"800" }')
-
-            elif p[12].y < p[14].y and p[14].y < p[16].y :
-
-                #print ("Droit OK --> BAS")
-                send('{ "Bras_G":"200" }')
-
-        # --------------------
-        # Bras Gauche
+        # ----------------------------------------
+        #           suivi de bras gauche
+        # ----------------------------------------
+        #   11 --> epaule
+        #   13 --> coude
+        #   15 --> poignet
+        
         if p[11].visibility > visibility_limit \
             and p[13].visibility > visibility_limit \
             and p[15].visibility > visibility_limit :
 
-            if p[11].y > p[13].y and p[13].y > p[15].y :
 
-                #print ("Gauche OK --> HAUT")
-                send('{ "Bras_D":"800" }')
+            epaule_x    = my_filter.add_and_average("p_11_x", p[11].x)
+            epaule_y    = my_filter.add_and_average("p_11_y", p[11].y)
+            epaule_z    = my_filter.add_and_average("p_11_z", p[11].z)
 
-            elif p[11].y < p[13].y and p[13].y < p[15].y :
+            coude_x     = my_filter.add_and_average("p_13_x", p[13].x)
+            coude_y     = my_filter.add_and_average("p_13_y", p[13].y)
+            coude_z     = my_filter.add_and_average("p_13_z", p[13].z)
 
-                #print ("Gauche OK --> BAS")
-                send('{ "Bras_D":"200" }')
+            poignet_x   = my_filter.add_and_average("p_15_x", p[15].x)
+            poignet_y   = my_filter.add_and_average("p_15_y", p[15].y)
+            poignet_z   = my_filter.add_and_average("p_15_z", p[15].z)
+        
 
-        '''
+            y_distance_epaule_coude  = abs(epaule_y - coude_y)
+            y_distance_coude_poignet = abs(coude_y - poignet_y)
+
+            z_distance_epaule_poignet  = abs(epaule_z - poignet_z)
+
+
+            #print(epaule_y, coude_y, poignet_y, y_distance_epaule_coude, y_distance_coude_poignet)
+            #print( round(z_distance_epaule_poignet, 3) )
+
+            if   poignet_y < coude_y and coude_y < epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
+                    print( "[Bras Gauche] - vers le haut")
+                    send('{ "Bras_D":"800", "Bras_D_1":"home", "Bras_D_2":"home" }')
+
+            elif poignet_y > coude_y and coude_y > epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
+                    print( "[Bras Gauche] - vers le bas")
+                    send('{ "Bras_D":"200", "Bras_D_1":"home", "Bras_D_2":"home" }')
+
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet < 0.2:
+                    print( "[Bras Gauche] - tendu vers la droite")
+                    send('{ "Bras_D":"500", "Bras_D_1":"2000", "Bras_D_2":"home" }')
+            
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet > 0.2:
+                    print( "[Bras Gauche] - tendu vers l'avant")
+                    send('{ "Bras_D":"500", "Bras_D_1":"home", "Bras_D_2":"home" }')
+                
+            elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet > 0.05 :
+                    print( "[Bras Gauche] - Popeye")
+                    send('{ "Bras_D":"500", "Bras_D_1":"2000", "Bras_D_2":"1000" }')
+
+
+
 
     return frame
 

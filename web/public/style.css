@@ -34,18 +34,20 @@ p {
 	display: inline;
   	margin-left: 50px;
   	user-select: none;
+	width: 30%;
 
 }
 .haut_2 {
 	display: inline;
-  	margin-left: 150px;
+  	margin-left: 100px;
   	margin-top: 10px;
-	width: 50%;
+	width: 30%;
 }
 .haut_3 {
 	display: inline;
   	margin-left: 0px;
   	margin-top: 10px;
+	width: 30%;
 }
 
 
@@ -129,6 +131,59 @@ p {
 	position:relative;
 	top:1px;
 }
+
+.myPistoGelButton {
+	box-shadow:inset 0px 1px 25px 16px #e34e63;
+	background:linear-gradient(to bottom, #b32424 50%, #a94d4d 100%);
+	background-color:#f00;
+	border-radius:32px;
+	border:4px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#fdfdfd;
+	font-family:Arial;
+	font-size:20px;
+	padding:16px 50px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+	margin-bottom: 15px;
+}
+.myPistoGelButton:hover {
+	background:linear-gradient(to bottom, #ff0000 5%, #ff0000 100%);
+	background-color:#ff0000;
+    	border: 3px solid #f00;
+}
+.myPistoGelButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myGyroButton {
+	box-shadow:inset 0px 1px 25px 16px #bee2f9;
+	background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+	background-color:#63b8ee;
+	border-radius:32px;
+	border:4px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#14396a;
+	font-family:Arial;
+	font-size:16px;
+	padding:8px 5px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+	margin-bottom: 15px;
+}
+.myGyroButton:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background-color:#468ccf;
+    	border: 3px solid #f00;
+}
+.myGyroButton:active {
+	position:relative;
+	top:1px;
+}
+
 
 
 div.smiley {

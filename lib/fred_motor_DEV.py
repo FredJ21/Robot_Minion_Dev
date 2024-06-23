@@ -207,6 +207,14 @@ class motor_class(object):
             print("init pca9685", self.consigne, angle)
             pca.servo[ self.gpio ].angle = angle
 
+        # ----------
+        elif self.motor_type == "pca9685_onoff" :
+
+            pca.servo[ self.gpio ].set_pulse_width_range( 0, 4095 )
+            self.consigne = self.pwm_home
+
+            print("init pca9685_onoff", self.consigne)
+
 
         # ----------
         elif self.motor_type == "CC" :
@@ -442,6 +450,20 @@ class motor_process(object):
                         print("pca9685 ", self.data[i].gpio, angle)
                         pca.servo[ self.data[i].gpio ].angle = angle
 
+                # ---------------------------------------------------
+                # traitement de la consigne SERVO de type PCA9685 en mode on/off
+                if self.data[i].motor_type == "pca9685_onoff" :
+
+                    if self.data[i].current != self.data[i].consigne :
+                        self.data[i].current = self.data[i].consigne
+                       
+                        if self.data[i].consigne == 1000 :
+                            pca.servo[ self.data[i].gpio ].fraction = 1.0
+                            print("pca9685_onoff ", self.data[i].gpio, "1")
+                        else:
+                            pca.servo[ self.data[i].gpio ].fraction = 0
+                            print("pca9685_onoff ", self.data[i].gpio, "0")
+ 
 
 
 
@@ -621,8 +643,6 @@ class receiver_UDP(object):
                         
                         self.data['Moteur_D'].set_consigne_CC(M[0])
                         self.data['Moteur_G'].set_consigne_CC(M[1])
-
-
 
 
                     else: 

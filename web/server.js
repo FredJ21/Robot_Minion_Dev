@@ -198,6 +198,18 @@ io.on('connection', (socket) => {
 			const command = `touch /tmp/enable_minion_opencv`;
 		    	exec(command); 
 		}
+		else if (val == 'pistogel_on') {
+			UDP_send('{ "pistogel":"1000" }');
+		}
+		else if (val == 'pistogel_off') {
+			UDP_send('{ "pistogel":"0" }');
+		}
+		else if (val == 'gyro_on') {
+			UDP_send('{ "gyro":"1000" }');
+		}
+		else if (val == 'gyro_off') {
+			UDP_send('{ "gyro":"0" }');
+		}
   	});
 
 

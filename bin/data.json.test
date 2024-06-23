@@ -39,6 +39,21 @@
         "pwm_max"    : 1000,
         "pwm_home"   : 200,
         "gpio"       : 7 
+
+    },{
+	"name": "pistogel",
+        "motor_type" : "pca9685_onoff",
+        "pwm_min"    : 0,
+        "pwm_max"    : 1000,
+        "pwm_home"   : 0,
+        "gpio"       : 4 
+     },{
+	"name": "gyro",
+        "motor_type" : "pca9685_onoff",
+        "pwm_min"    : 0,
+        "pwm_max"    : 1000,
+        "pwm_home"   : 0,
+        "gpio"       : 5 
     },{
 	"name": "Bouche_D",
         "motor_type" : "servo",

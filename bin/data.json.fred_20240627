@@ -8,20 +8,20 @@
   "motor": [
     {
 	"name": "Oeil_X",
-        "motor_type" : "pca9685",
+        "motor_type" : "servo",
         "reverse"    : false,
         "pwm_min"    : 300,
         "pwm_max"    : 800,
         "pwm_home"   : 600,
-        "gpio"       : 15
+        "gpio"       : 5
     },{
 	"name": "Oeil_Y",
-        "motor_type" : "pca9685",
+        "motor_type" : "servo",
         "reverse"    : false,
         "pwm_min"    : 350,
         "pwm_max"    : 650,
         "pwm_home"   : 500,
-        "gpio"       : 14
+        "gpio"       : 6
     },{
 	"name": "Bras_D",
         "motor_type" : "pca9685",

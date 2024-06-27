@@ -146,7 +146,6 @@ def video_processing(frame):
             elif p[0].y < 0.4 :       send('{ "Oeil_Y":"-30" }')
 
 
-
         # --------------------
         # Bras Droite
         if p[12].visibility > visibility_limit \
@@ -178,7 +177,6 @@ def video_processing(frame):
 
                 #print ("Gauche OK --> BAS")
                 send('{ "Bras_D":"200" }')
-
 
     return frame
 

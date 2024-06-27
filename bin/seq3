@@ -1,2 +1,12 @@
 { "Bras_D":"home", "Bras_G":"home", "Bouche_D":"home", "Bouche_G":"home", "Oeil_X":"home", "Oeil_Y":"home" }
 { "Bras_D_1":"home", "Bras_D_2":"home", "Bras_G_1":"home", "Bras_G_2":"home" }
+sleep 1
+{ "Bras_D_1":"home", "Bras_D_2":"1000", "Bras_G_1":"home", "Bras_G_2":"1000" }
+sleep 2
+{ "Bras_D_1":"2000", "Bras_D_2":"1000", "Bras_G_1":"2000", "Bras_G_2":"1000" }
+sleep 1
+{ "Bras_D":"500", "Bras_D_1":"home", "Bras_D_2":"home" }
+sleep 1
+{ "Bras_D":"450", "Bras_D_1":"home", "Bras_D_2":"home" }
+sleep 1
+{ "Bras_D":"550", "Bras_D_1":"3500", "Bras_D_2":"home" }

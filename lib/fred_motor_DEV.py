@@ -210,7 +210,7 @@ class motor_class(object):
         # ----------
         elif self.motor_type == "pca9685_onoff" :
 
-            pca.servo[ self.gpio ].set_pulse_width_range( 0, 4095 )
+            pca.servo[ self.gpio ].set_pulse_width_range( 0, 19000 )
             self.consigne = self.pwm_home
 
             print("init pca9685_onoff", self.consigne)
@@ -457,9 +457,9 @@ class motor_process(object):
                     if self.data[i].current != self.data[i].consigne :
                         self.data[i].current = self.data[i].consigne
                        
-                        if self.data[i].consigne == 1000 :
+                        if self.data[i].consigne != 0 :
                             pca.servo[ self.data[i].gpio ].fraction = 1.0
-                            print("pca9685_onoff ", self.data[i].gpio, "1")
+                            print("pca9685_onoff ", self.data[i].gpio, "1.0")
                         else:
                             pca.servo[ self.data[i].gpio ].fraction = 0
                             print("pca9685_onoff ", self.data[i].gpio, "0")

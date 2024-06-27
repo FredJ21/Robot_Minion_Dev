@@ -213,7 +213,9 @@ def video_processing(frame):
         #   12 --> epaule
         #   14 --> coude
         #   16 --> poignet
-        
+       
+        Bras_Droit = None
+
         if p[12].visibility > visibility_limit \
             and p[14].visibility > visibility_limit \
             and p[16].visibility > visibility_limit :
@@ -244,10 +246,12 @@ def video_processing(frame):
             if   poignet_y < coude_y and coude_y < epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
                     print( "[Bras Droit] - vers le haut")
                     send('{ "Bras_G":"800", "Bras_G_1":"home", "Bras_G_2":"home" }')
+                    Bras_Droit = "vers_le_haut"
 
             elif poignet_y > coude_y and coude_y > epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
                     print( "[Bras Droit] - vers le bas")
                     send('{ "Bras_G":"200", "Bras_G_1":"home", "Bras_G_2":"home" }')
+                    Bras_Droit = "vers_le_bas"
 
             elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet < 0.2:
                     print( "[Bras Droit] - tendu vers la droite")
@@ -270,6 +274,8 @@ def video_processing(frame):
         #   13 --> coude
         #   15 --> poignet
         
+        Bras_Gauche = None
+
         if p[11].visibility > visibility_limit \
             and p[13].visibility > visibility_limit \
             and p[15].visibility > visibility_limit :
@@ -300,10 +306,12 @@ def video_processing(frame):
             if   poignet_y < coude_y and coude_y < epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
                     print( "[Bras Gauche] - vers le haut")
                     send('{ "Bras_D":"800", "Bras_D_1":"home", "Bras_D_2":"home" }')
+                    Bras_Gauche = "vers_le_haut"
 
             elif poignet_y > coude_y and coude_y > epaule_y and y_distance_epaule_coude > 0.02 and y_distance_coude_poignet > 0.02 : 
                     print( "[Bras Gauche] - vers le bas")
                     send('{ "Bras_D":"200", "Bras_D_1":"home", "Bras_D_2":"home" }')
+                    Bras_Gauche = "vers_le_bas"
 
             elif y_distance_epaule_coude < 0.02 and y_distance_coude_poignet < 0.02 and z_distance_epaule_poignet < 0.2:
                     print( "[Bras Gauche] - tendu vers la droite")
@@ -317,7 +325,15 @@ def video_processing(frame):
                     print( "[Bras Gauche] - Popeye")
                     send('{ "Bras_D":"500", "Bras_D_1":"2000", "Bras_D_2":"1000" }')
 
+        
+        # ----------------------------------------
+        if Bras_Gauche == "vers_le_haut" and Bras_Droit == "vers_le_haut":
 
+            send('{ "Bouche_D": "0", "Bouche_G": "0" }')
+
+        elif Bras_Gauche == "vers_le_bas" and Bras_Droit == "vers_le_bas":
+            
+            send('{ "Bouche_D": "home", "Bouche_G": "home" }')
 
 
     return frame

@@ -63,6 +63,13 @@ processing_freq = 0.01                 # Traitement OpenCV toutes les X secondes
 processing_last_result = None
 processing_last = 0
 
+
+Global_status = {
+        "last_detection":  0,
+        "last_sleep":      0,
+        "current_status":  "sleep"
+        }
+
 # --------------------
 
 
@@ -112,6 +119,7 @@ def video_processing(frame):
     global processing_last_result 
     global processing_last 
 
+    global Global_status
 
 
     if time() > processing_last + processing_freq :
@@ -124,7 +132,43 @@ def video_processing(frame):
     results = processing_last_result
 
 
+
+    print("last_detection :", Global_status["last_detection"],          "   last_sleep :", Global_status["last_sleep"],          "   status :", Global_status["current_status"]          )
+
+
+
+    # passage en sommeil 
+    if Global_status["current_status"] == "tracking" and time() > Global_status["last_detection"] + 30 :
+
+        Global_status["last_sleep"] = time()
+        Global_status["current_status"] = "sleep"
+        print("Go to sleep")
+        send('{"Bras_D": "home", "Bras_G": "home", "Bouche_D": "home", "Bouche_G": "home", "Oeil_X": "home", "Oeil_Y": "home"}')
+        send('{"Bras_D_1": "home", "Bras_D_2": "home", "Bras_G_1": "home", "Bras_G_2": "home"}')
+        send('{"play": "1_ha.mp3"}')
+
+    # si le sommeil dure trop longtemps
+    if Global_status["current_status"] == "sleep" and time() > Global_status["last_sleep"] + 30:
+        Global_status["last_sleep"] = time()
+        print("Je dorts !!!")
+        send('{"gyro": "1000"}')
+        send('{"play": "2_banana.mp3"}')
+        sleep(1)
+        send('{"gyro": "0"}')
+
+
+
+    # Detection de pose
     if results.pose_landmarks :
+
+        # le reveille
+        if Global_status["current_status"] == "sleep" :
+            Global_status["current_status"] = "tracking"
+            send('{"play": "2_hello-2.mp3"}')
+
+
+        Global_status["last_detection"] = time()
+
 
         mp_drawing.draw_landmarks(
                     frame,

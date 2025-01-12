@@ -138,7 +138,7 @@ def video_processing(frame):
 
 
     # passage en sommeil 
-    if Global_status["current_status"] == "tracking" and time() > Global_status["last_detection"] + 30 :
+    if Global_status["current_status"] == "tracking" and time() > Global_status["last_detection"] + 300 :
 
         Global_status["last_sleep"] = time()
         Global_status["current_status"] = "sleep"
@@ -148,7 +148,7 @@ def video_processing(frame):
         send('{"play": "1_ha.mp3"}')
 
     # si le sommeil dure trop longtemps
-    if Global_status["current_status"] == "sleep" and time() > Global_status["last_sleep"] + 30:
+    if Global_status["current_status"] == "sleep" and time() > Global_status["last_sleep"] + 300:
         Global_status["last_sleep"] = time()
         print("Je dorts !!!")
         send('{"gyro": "1000"}')

@@ -29,7 +29,7 @@ Instructions d'installation du programme
 
 #### Formatage de carte SD
 
-On part de zéro, Formattage de la carte SD --> https://www.sdcard.org/downloads/formatter/
+On part de zéro, Formatage de la carte SD --> https://www.sdcard.org/downloads/formatter/
 
 
 #### Installation de l'OS
